@@ -3,13 +3,11 @@
   "name": "local-time-discord",
   "main": "worker.js",
   "compatibility_date": "2026-10-09",
+  "keep_vars": true,
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
     "run_worker_first": true
-  },
-  "vars": {
-    "DISCORD_CLIENT_ID": ""
   },
   "secrets": {
     "required": ["DISCORD_CLIENT_SECRET"]
