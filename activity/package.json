@@ -1,0 +1,20 @@
+{
+  "name": "local-time-discord-activity",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"vite --host 0.0.0.0\" \"node server.js\"",
+    "build": "vite build",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@discord/embedded-app-sdk": "^2.3.0",
+    "dotenv": "^16.4.7",
+    "express": "4.21.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "vite": "5.4.14"
+  }
+}
