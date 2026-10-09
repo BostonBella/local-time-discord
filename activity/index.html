@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#5865F2" />
+    <title>Local Time</title>
+  </head>
+  <body>
+    <main id="app">
+      <section class="card">
+        <h1>Local Time</h1>
+        <p class="intro">Choose the timezone you want people on Discord to see.</p>
+
+        <label for="timezone">Timezone</label>
+        <select id="timezone"></select>
+
+        <fieldset>
+          <legend>Clock format</legend>
+          <label class="radio"><input type="radio" name="clock" value="12" checked /> 12-hour</label>
+          <label class="radio"><input type="radio" name="clock" value="24" /> 24-hour</label>
+        </fieldset>
+
+        <div class="preview">
+          <span>Discord preview</span>
+          <strong id="previewTime">—</strong>
+          <small id="previewZone">—</small>
+        </div>
+
+        <button id="showButton" disabled>Show on my profile</button>
+        <p id="status" role="status">Connecting to Discord…</p>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
