@@ -1,15 +1,13 @@
 import { DiscordSDK } from "@discord/embedded-app-sdk";
 import "./style.css";
 
-const clientId = import.meta.env.VITE_DISCORD_CLIENT_ID;
-const discordSdk = new DiscordSDK(clientId);
-
 const timezoneSelect = document.querySelector("#timezone");
 const previewTime = document.querySelector("#previewTime");
 const previewZone = document.querySelector("#previewZone");
 const showButton = document.querySelector("#showButton");
 const status = document.querySelector("#status");
 
+let discordSdk;
 let authenticated = false;
 let updateTimer = null;
 
@@ -154,11 +152,17 @@ async function publishPresence() {
 }
 
 async function setupDiscord() {
-  if (!clientId || clientId === "YOUR_APPLICATION_ID") {
-    status.textContent = "Missing VITE_DISCORD_CLIENT_ID.";
-    return;
+  const configResponse = await fetch("/api/config");
+  if (!configResponse.ok) {
+    throw new Error("Could not load app configuration.");
   }
 
+  const { clientId } = await configResponse.json();
+  if (!clientId) {
+    throw new Error("Missing Discord Application ID.");
+  }
+
+  discordSdk = new DiscordSDK(clientId);
   await discordSdk.ready();
 
   const { code } = await discordSdk.commands.authorize({
