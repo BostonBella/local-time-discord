@@ -4,6 +4,9 @@
   "main": "worker.js",
   "compatibility_date": "2026-10-09",
   "keep_vars": true,
+  "vars": {
+    "DISCORD_CLIENT_ID": "1558135269377712178"
+  },
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
