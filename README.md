@@ -4,18 +4,24 @@ A Discord Activity that lets a user choose a timezone and show the current time 
 
 ## Repository layout
 
-- `activity/` — the Discord Activity source code
+- `activity/` — the Discord Activity source code and Cloudflare Worker
 - `privacy.html` — public Privacy Policy used by Discord
 - `terms.html` — public Terms of Service used by Discord
 - `index.html` — public landing page for GitHub Pages
 
-## Local development
+## Cloudflare deployment
 
-1. Copy `activity/.env.example` to `activity/.env`.
-2. Add the Discord Application ID and Client Secret to `.env`.
-3. From the `activity` folder, run:
-   - `npm install`
-   - `npm run dev`
-4. Use a tunnel for the Vite URL during Discord Activity testing.
+The Activity is configured to deploy as a Cloudflare Worker with static assets.
 
-The real `.env` file is ignored by Git and must never be committed.
+In Cloudflare Workers & Pages:
+
+1. Import this GitHub repository.
+2. Set the project root directory to `activity`.
+3. Build command: `npm run build`
+4. Deploy command: `npx wrangler deploy`
+5. Add `DISCORD_CLIENT_ID` as a normal environment variable.
+6. Add `DISCORD_CLIENT_SECRET` as an encrypted secret.
+
+The Worker serves the built Vite app and handles the Discord OAuth token exchange at `/api/token`.
+
+Do not commit real Discord credentials. `.env` and `.dev.vars` files are ignored by Git.
