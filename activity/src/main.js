@@ -219,8 +219,12 @@ showButton.addEventListener("click", async () => {
       publishPresence().catch(console.error);
     }, 60_000);
   } catch (error) {
-    console.error(error);
-    status.textContent = "Could not update your Discord presence.";
+    console.error("setActivity failed:", error);
+    const message =
+      error?.message ||
+      error?.code ||
+      (typeof error === "string" ? error : JSON.stringify(error));
+    status.textContent = `Could not update your Discord presence: ${message}`;
   } finally {
     showButton.disabled = false;
   }
