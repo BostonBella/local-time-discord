@@ -144,8 +144,7 @@ async function publishPresence() {
     activity: {
       type: 0,
       details: `${time} ${zoneName}`,
-      state: `${date} · ${utcOffset}`,
-      timestamps: null
+      state: `${date} · ${utcOffset}`
     }
   });
 
